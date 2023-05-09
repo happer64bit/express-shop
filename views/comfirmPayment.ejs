@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comfirm Your Payment</title>
+    <link rel="stylesheet" href="/global.css">
+</head>
+<body>
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <div>
+            <h1>Confirm Your Payment of <%= item.price %> USD</h1>
+            <div>
+                <div>
+                    <code>Name: <%= item.name %></code>
+                </div>
+                <div>
+                    <code>Your Balance 1000</code>
+                </div>
+                <div>
+                    <% if(user.balance - item.price <= 0) { %>
+                        <h3>
+                            <code><span style="color: red;">Not enough balance</span></code>
+                        </h3>
+                    <% } else { %>
+                        <h3>
+                            <code>Your Balance After this <span style="color: red;"><%= user.balance - item.price %> USD</span></code>
+                        </h3>
+                    <% } %>
+                </div>
+            </div>
+
+            <div>
+                <form method="post">
+                    <input type="hidden" value="<%= item._id %>">
+                    <% if((user.balance - item.price) >= 0) { %>
+                        <button style="padding: 5px 12px;">CONFIRM</button>
+                    <% } else { %> 
+
+                    <% } %>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pannel - Bussiness</title>
+    <link rel="stylesheet" href="/global.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/">
+            <h1>Shop Eco</h1>
+        </a>
+        <div style="min-width: 12rem; max-width: 20rem;">
+            <form action="/search" method="get">
+                <input type="text" placeholder="Search Anything" style="padding: 12px; border: none; background-color: #ddd; border-radius: 5px; width: 100%; outline: none;" id="search-input" name="q">
+            </form>
+        </div>
+        <div style="padding: 1px;">
+            <div style="display: flex; align-items: center; padding-right: 10px;">
+                    <% if(user.accountType != "personal") { %>
+                        <a href="/pannel" class="teal-btn" aria-label="Profile">Pannel</a>
+                        <div style="padding: 4px;"></div>
+                    <% } else { %>
+
+                    <% } %>
+                <a href="/account/profile" class="teal-btn" aria-label="Profile">Profile </a>
+                <div style="padding: 4px;"></div>
+                <a href="/account/logout" class="teal-btn" aria-label="Logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+    <div style="display: flex; justify-content: center; padding-top: 6pc;">
+        <div style="width: 500px;">
+            <h1>Bussiness Pannel</h1>
+            <h4>Requests</h4>
+            <div style="overflow-y: scroll; height: 20rem;">
+
+            </div>
+            <h4>LIST MY PRODUCT</h4>
+            <a href="/create-product">
+                <button class="teal-btn" style="outline: none; box-shadow: none; border: none; width: 100%; cursor: pointer;">LIST</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

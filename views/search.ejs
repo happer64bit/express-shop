@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <link rel="stylesheet" href="/global.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/">
+            <h1>Shop Eco</h1>
+        </a>
+        <div style="min-width: 12rem; max-width: 20rem;">
+            <form action="/search" method="get">
+                <input type="text" placeholder="Search Anything" style="padding: 12px; border: none; background-color: #ddd; border-radius: 5px; width: 100%; outline: none;" id="search-input" name="q" value="<%= q %>">
+            </form>
+        </div>
+        <div style="padding: 1px;">
+            <div style="display: flex; align-items: center; padding-right: 10px;">
+                    <% if(user.accountType != "personal") { %>
+                        <a href="/pannel" class="teal-btn" aria-label="Profile">Pannel</a>
+                        <div style="padding: 4px;"></div>
+                    <% } else { %>
+
+                    <% } %>
+                    <a href="/account/profile" class="teal-btn" aria-label="Profile">Profile </a>
+                    <div style="padding: 4px;"></div>
+                    <a href="/account/logout" class="teal-btn" aria-label="Logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+    <div style="padding-top: 5pc; display: flex; justify-content: center;">
+        <div style="width: 500px;">
+            <% if(sales) { %>
+                <% for(var i =0; i < sales.length; i++) { %>
+                    <div style="display: flex; align-items: center;">
+                        <div>
+                            <img src="/images/<%= sales[i].image %>" width="130px"/>
+                        </div>
+                        <div>
+                            <h2><%= sales[i].name %></h2>
+                            <p><%= sales[i].description.slice(0, 60) %></p>
+                            <a href="/checkout/<%= sales[i]._id %>">Buy Now</a>
+                        </div>
+                    </div>
+                <% } %>
+            <% } else { %> 
+                <p>Nothing to show</p>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

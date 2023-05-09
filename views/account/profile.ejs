@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/global.css">
+    <script src="/js/jquery.js"></script>
+    <style>
+        .edit-profile-btn {
+            width: 100%;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            padding: 12px;
+            cursor: pointer;
+        }
+
+        .edit-profile-btn:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="/">
+            <h1>Shop Eco</h1>
+        </a>
+        <div style="min-width: 12rem; max-width: 20rem;">
+            <form action="/search" method="get">
+                <input type="text" placeholder="Search Anything" style="padding: 12px; border: none; background-color: #ddd; border-radius: 5px; width: 100%; outline: none;" id="search-input" name="q">
+            </form>
+        </div>
+        <div style="padding: 1px;">
+            <div style="display: flex; align-items: center; padding-right: 10px;">
+                <a href="/account/logout" class="teal-btn" aria-label="Logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+    <div style="display: flex; flex-direction: column; align-items: center; padding-left: 5pc; padding-right: 5pc; padding-top: 5pc;">
+        <div style="display: grid;
+                    grid-template-columns: auto 1fr;
+                    grid-template-rows: auto;
+                    grid-column-gap: 1em;
+                    align-items: center;">
+            <div style="width: 200px;">
+                <img src="<%= profile.profileImage=='null'? '/blank.webp' : profile.profileImage %>" alt=""
+                    style="border-radius: 100%; width: 150px;">
+            </div>
+            <div>
+                <h2>
+                    <%= profile.displayName %>
+                </h2>
+                <code style="color: #3a3a3a;">
+                    <h2>@<%= user.username %></h2>
+                </code>
+                <h4 style="font-weight: 300; max-width: 20rem;">
+                    <%= profile.bio %>
+                </h4>
+            </div>
+        </div>
+        <div style="width: 20rem;">
+            <button class="edit-profile-btn" onclick="showBox()">Edit Profile</button>
+        </div>
+        <div style="display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    grid-template-rows: auto;
+                    grid-column-gap: 2em;
+                    grid-row-gap: 1em;
+                    padding-top: 1pc;">
+            <div
+                style="padding-right: 1em; text-align: center">
+                <p style="font-weight: 600;">Total Purchased</p>
+                <p>0</p>
+            </div>
+            <div
+                style="padding-right: 1em; text-align: center">
+                <p style="font-weight: 600;">Purchased Amount</p>
+                <p>$0.00</p>
+            </div>
+            <div style="padding-right: 1em; text-align: center">
+                <p style="font-weight: 600;">Joined</p>
+                <p>
+                    13 / August / 2023
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="edit-p-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0, 0, 0, 0.2); display: flex; justify-content: center; align-items: center;">
+        <div style="padding: 12px 16px; background-color: white; width: 20rem; border-radius: 12px;">
+            <div>
+                <h1>Edit Profile</h1>
+            </div>
+            <div>
+                <form action="/account/profile/edit" method="post">
+                    <div>
+                        <div style="padding-top: 1rem; padding-bottom: 0.5rem;">
+                            <label>Display Name</label>
+                        </div>
+                        <input type="text" style="padding: 0.5rem; width: 90%;" value="<%= profile.displayName %>" name="displayName">
+                    </div>
+                    <div>
+                        <div style="padding-top: 1rem; padding-bottom: 0.5rem;">
+                            <label>Bio</label>
+                        </div>
+                        <textarea type="text" style="padding: 0.5rem; width: 90%; max-width: 90%; height: 5rem;" name="bio"><%= profile.bio %></textarea>
+                    </div>
+                    <div style="padding-top: 1rem;">
+                        <button style="padding: 10px 12px;" onclick='$("#edit-p-modal").hide()' type="button">Close</button>
+                        <button style="padding: 10px 12px;" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $("#edit-p-modal").hide()
+
+        function showBox() {
+            $("#edit-p-modal").show()
+        }
+    </script>
+</body>
+
+</html>
